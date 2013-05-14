@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opciones_puerto">
+        <item >Galería Imágenes</item>
+        <item >Servicios</item>
+        <item >Zonas de interés</item>
+    </string-array>
+    
+</resources>

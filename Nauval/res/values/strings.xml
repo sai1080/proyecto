@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nauval</string>
+    <string name="action_settings">Opciones</string>
+    <string name="hello_world">Aplicación sobre puertos naúticos de Valencia</string>
+    <string name="listadobutton">Listado puertos</string>
+    <string name="mapabutton">Mapa</string>
+    <string name="title_activity_detalle_puerto">Detalle puerto</string>
+    <string name="direccion">Direccion</string>
+    <string name="telefonotextview">Teléfono</string>
+    <string name="email_text_view">Correo electrónico</string>
+    <string name="web_text_view">Página web</string>
+    <string name="position">Coordenadas</string>
+
+</resources>
