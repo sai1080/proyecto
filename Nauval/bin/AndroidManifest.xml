@@ -40,11 +40,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.nauval.Puertos"
+            android:name="com.example.nauval.ListadoPuertosActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.nauval.Mapas"
+            android:name="com.example.nauval.MapaPuertosActivity"
             android:label="@string/app_name" >
         </activity>
 

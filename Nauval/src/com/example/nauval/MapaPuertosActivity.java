@@ -1,5 +1,11 @@
 package com.example.nauval;
 
+import java.util.List;
+
+import com.example.nauval.ListadoPuertosActivity.RecuperarPuertosTask;
+import com.example.nauval.dao.ClubNauticoDAO;
+import com.example.nauval.dao.ClubNauticoDAOHttpClient;
+import com.example.nauval.modelo.ClubNautico;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,20 +20,23 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.maps.Projection;
 
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class Mapas extends android.support.v4.app.FragmentActivity {
+public class MapaPuertosActivity extends android.support.v4.app.FragmentActivity {
 	
 	private GoogleMap mapa = null;
 	private int vista = 0;
+	private List<ClubNautico> clubesNauticos;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mapas);	
-		
+	     clubesNauticos = new RecuperarPuertosTask().execute("").get();
+
 		 mapa =((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();	 
 		 CameraUpdate camUpd2 = 
 					CameraUpdateFactory.newLatLngZoom(new LatLng(39.28, 0.22), 7F);
@@ -37,7 +46,7 @@ public class Mapas extends android.support.v4.app.FragmentActivity {
 			@Override
 			public boolean onMarkerClick(Marker marker) {
 				Toast.makeText(
-				Mapas.this, 
+				MapaPuertosActivity.this, 
 				"Marcador pulsado:\n" + 
 				marker.getTitle(),
 				Toast.LENGTH_SHORT).show();
@@ -62,37 +71,16 @@ public class Mapas extends android.support.v4.app.FragmentActivity {
 		});				 
 	}
 	
-	private void mostrarMarcador(){
-		LatLng pos1 = new LatLng(39.428341, -0.331564);
-		LatLng pos2 = new LatLng(40.413299, 0.433645);
-
-		mapa.addMarker(new MarkerOptions()
-				.title("Naútico Valencia")
-				.snippet("interes turístico")
-				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-				.position(pos1));
-	
-		mapa.addMarker(new MarkerOptions()
-				.title("Naútico Benicarló")
-				.snippet("interes turístico")
-				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
-				.position(pos2));		
-
-		LatLng pos3 = new LatLng(38.846667, 0.114833);
-		
-		Marker denia = mapa.addMarker(new MarkerOptions()
-		        .position(pos3)
-		        .title("Naútico Denia")
-		        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-		        .snippet("Ruta a Ibiza"));
-		
-		LatLng pos4 = new LatLng(39.15698, -0.114563);
-		
-		mapa.addMarker(new MarkerOptions()
-				.title("Naútico Cullera")
-		        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-		        .snippet("Zona de ocio")
-		        .position(pos4));			
+	private void mostrarMarcadores(){
+		for (ClubNautico clubNautico : clubesNauticos) {
+			LatLng pos1 = new LatLng(clubNautico.getLatitud(), clubNautico.getLongitud());
+			mapa.addMarker(new MarkerOptions()
+			.title(clubNautico.getNombre())
+			.snippet(clubNautico.getDireccion())
+			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+			.position(pos1));
+			
+		}			
 	}
 
 	@Override
@@ -139,14 +127,14 @@ public class Mapas extends android.support.v4.app.FragmentActivity {
 			case R.id.menu_posicion:
 				CameraPosition camPos2 = mapa.getCameraPosition();
 				LatLng pos = camPos2.target;
-				Toast.makeText(Mapas.this, 
+				Toast.makeText(MapaPuertosActivity.this, 
 						"Lat: " + pos.latitude + " - Lng: " + pos.longitude, 
 						Toast.LENGTH_LONG).show();
 				break;
 				
 			case R.id.menu_marcadores:
 				//mostrarMarcador(39.428341, -0.331564);
-				mostrarMarcador();
+				mostrarMarcadores();
 				break;				
 		}
 		return super.onOptionsItemSelected(item);
@@ -171,4 +159,15 @@ public class Mapas extends android.support.v4.app.FragmentActivity {
 				break;
 		}
 	}
+	// Para poder invocar servicios que acceden a Internet desde el hilo principal de la aplicación
+		// definimos una clase que herede de AsyncTask donde debemo insertar el código a ejecutar.
+	    private class RecuperarPuertosTask extends AsyncTask<String, Void, List<ClubNautico>>{
+
+			@Override
+			protected List<ClubNautico> doInBackground(String... arg0) {
+				ClubNauticoDAO clubNauticoDAO=new ClubNauticoDAOHttpClient();
+				List<ClubNautico> clubesNauticos = clubNauticoDAO.recuperarClubesNauticos();
+				return clubesNauticos;
+			}
+	    }
 }

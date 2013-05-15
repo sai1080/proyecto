@@ -19,7 +19,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class Puertos extends Activity{
+public class ListadoPuertosActivity extends Activity{
 	
 	ListView listView;
 	
@@ -59,15 +59,5 @@ public class Puertos extends Activity{
 	}
 	
 	
-	// Para poder invocar servicios que acceden a Internet desde el hilo principal de la aplicación
-	// definimos una clase que herede de AsyncTask donde debemo insertar el código a ejecutar.
-    private class RecuperarPuertosTask extends AsyncTask<String, Void, List<ClubNautico>>{
-
-		@Override
-		protected List<ClubNautico> doInBackground(String... arg0) {
-			ClubNauticoDAO clubNauticoDAO=new ClubNauticoDAOHttpClient();
-			List<ClubNautico> clubesNauticos = clubNauticoDAO.recuperarClubesNauticos();
-			return clubesNauticos;
-		}
-    }
+	
 }
