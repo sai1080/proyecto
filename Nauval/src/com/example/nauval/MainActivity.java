@@ -20,8 +20,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
          listadoButton=(Button)findViewById(R.id.listado_button);
          mapasButton=(Button)findViewById(R.id.mapa_button);
-        listadoButton.setOnClickListener(new OnClickListener() {
-			
+         
+        listadoButton.setOnClickListener(new OnClickListener() {		
 			@Override
 			public void onClick(View arg0) {
 				 Intent intent1 = new Intent(MainActivity.this, ListadoPuertosActivity.class);
@@ -29,8 +29,7 @@ public class MainActivity extends Activity {
 			}
 		});
         
-        mapasButton.setOnClickListener(new OnClickListener() {
-			
+        mapasButton.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
 		          Intent intent2 = new Intent(MainActivity.this, MapaPuertosActivity.class);

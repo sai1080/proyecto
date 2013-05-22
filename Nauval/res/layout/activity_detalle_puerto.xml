@@ -47,6 +47,7 @@
         android:id="@+id/emailtextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:linksClickable="true"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
@@ -63,10 +64,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/etiquetacoordenadastextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/position" />
+    
+    <TextView
+        android:id="@+id/coordenadastextview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/positiontextview"

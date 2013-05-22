@@ -1,33 +1,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <item android:id="@+id/menu_centrarmapa"
+         android:title="Mapa inicial" 
+         android:orderInCategory="100">
+    </item>
+    
+    
     <item android:id="@+id/menu_vista"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Vista"/>
+        android:title="Cambiar vista"/>
     
     <item android:id="@+id/menu_mover"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Mover"/>
+        android:title="Ver coordenadas "/>
     
     <item android:id="@+id/menu_animar"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Animar"/>
+        android:title="Vista España"/>
     
     <item android:id="@+id/menu_3d"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Mover 3D"/>
+        android:title="vista rcnv"/>
     
-    <item android:id="@+id/menu_posicion"
+   <!--  <item android:id="@+id/menu_posicion"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Posición"/>
+        android:title="Ver coordenadas"/> -->
     
     <item android:id="@+id/menu_marcadores"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="Marcadores"/>
+    
 
 </menu>

@@ -18,8 +18,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class ClubNauticoDAOHttpClient implements ClubNauticoDAO{
-	private static final String puertosURL="http://10.0.0.121:8080/nauvalservidor/PuertosServlet?id=";
-
+	//private static final String puertosURL="http://10.0.0.121:8080/nauvalservidor/PuertosServlet?id=";
+	  private static final String puertosURL="http://192.168.2.77:8080/nauvalservidor/PuertosServlet?id=";
 	@Override
 	public List<ClubNautico> recuperarClubesNauticos() {
 		HttpClient httpClient = new  DefaultHttpClient();
