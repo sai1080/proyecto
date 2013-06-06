@@ -2,7 +2,7 @@
 
     <item
         android:id="@+id/MenuOpc1"
-        android:title="Puertos naúticos"
+        android:title="Acerca de"
         android:orderInCategory="100"
        	android:icon="@android:drawable/ic_menu_compass"/>
     

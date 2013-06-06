@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.maps.Projection;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -34,20 +35,11 @@ public class MapaPuertosActivity extends
 
 	private GoogleMap mapa = null;
 	private int vista = 0;
-	private List<ClubNautico> clubesNauticos;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mapas);
-		try {
-			clubesNauticos = new RecuperarPuertosTask().execute("").get();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 
 		mapa = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map)).getMap();
@@ -58,7 +50,7 @@ public class MapaPuertosActivity extends
 
 		mapa.setOnMarkerClickListener(new OnMarkerClickListener() {
 			@Override
-			public boolean onMarkerClick(Marker marker) {
+			public boolean onMarkerClick(Marker marker) {	
 				Toast.makeText(MapaPuertosActivity.this,
 						"Marcador pulsado:\n" + marker.getTitle(),
 						Toast.LENGTH_SHORT).show();
@@ -70,9 +62,8 @@ public class MapaPuertosActivity extends
 
 				LatLng puerto = marker.getPosition();
 				CameraPosition camPos = new CameraPosition.Builder()
-						.target(puerto) // Centramos el mapa en  un puerto náutico
-										// d
-						.zoom(15) // Establecemos el zoom en 19
+						.target(puerto) // Centramos el mapa en  un puerto náutico									
+						.zoom(17) // Establecemos el zoom en 17
 						.bearing(30) // Establecemos la orientación con el
 										// noreste arriba
 						.tilt(70) // Bajamos el punto de vista de la cámara 70
@@ -89,29 +80,21 @@ public class MapaPuertosActivity extends
 	}
 
 	private void mostrarMarcadores() {
-		for (ClubNautico clubNautico : clubesNauticos) {
-			LatLng pos = new LatLng(clubNautico.getLatitud(),
-					clubNautico.getLongitud());
-			mapa.addMarker(new MarkerOptions()
-					.title(clubNautico.getNombre())
-					.snippet(clubNautico.getDireccion())
-					.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-					.position(pos));
-		}	
+		
+			new RecuperarPuertosTask().execute("");
+		
+		
 	}
 	
 	private void getPosition(){
-		mapa.setOnMapClickListener(new OnMapClickListener() {
-			
+		mapa.setOnMapClickListener(new OnMapClickListener() {		
 			@Override
 			public void onMapClick(LatLng point) {
 				com.google.android.gms.maps.Projection proy = mapa.getProjection();
 				Point coord = proy.toScreenLocation(point);
-				
 				Toast.makeText(MapaPuertosActivity.this, "Lat: " + point.latitude + "\n" +
-												  "Long" + point.longitude + "\n" +
-												  "X: " + coord.x + " - Y: " + coord.y, vista).show();			
+										"Long" + point.longitude + "\n" +
+									    "X: " + coord.x + " - Y: " + coord.y, vista).show();			
 			}
 		});	
 	}
@@ -130,22 +113,22 @@ public class MapaPuertosActivity extends
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			break;
+			
 		case R.id.menu_centrarmapa:
 			/*CameraUpdate camUpdCentrar = CameraUpdateFactory.newLatLngZoom(
 					new LatLng(39.28, 0.22), 7F);
 			mapa.animateCamera(camUpdCentrar);*/
 						
 			LatLng valencia1 = new LatLng(39.28, 0.22);
-			CameraPosition camPos1 = new CameraPosition.Builder().target(valencia1) // Centramos el mapa en la comunidas valenciana de valencia
+			CameraPosition camPos1 = new CameraPosition.Builder().target(valencia1)
+			 // Centramos el mapa en la comunidad valenciana
 																				
 					.zoom(7) // Establecemos el zoom en 19
 					.bearing(0) // Establecemos la orientación vertical								
 					.tilt(0) // el punto de vista de la cámara es cenital
 					.build();
-
 			CameraUpdate camUpd4 = CameraUpdateFactory
 					.newCameraPosition(camPos1);
-
 			mapa.animateCamera(camUpd4);
 			
 			
@@ -154,22 +137,21 @@ public class MapaPuertosActivity extends
 			alternarVista();
 			break;
 		case R.id.menu_mover:
-			/* Centramos el mapa en España
-			CameraUpdate camUpd1 = CameraUpdateFactory.newLatLng(new LatLng(
-					39.42815, -0.331682));
-			mapa.moveCamera(camUpd1);*/
 			getPosition();
 			break;
+			
 		case R.id.menu_animar:
 			// Centramos el mapa en España y con nivel de zoom 5
 			CameraUpdate camUpd2 = CameraUpdateFactory.newLatLngZoom(
 					new LatLng(40.41, -3.69), 5F);
 			mapa.animateCamera(camUpd2);
 			break;
+			
 		case R.id.menu_3d:
 			LatLng valencia = new LatLng(39.42839, -0.33181);
-			CameraPosition camPos = new CameraPosition.Builder().target(valencia) // Centramos el mapa en el puerto náutico de valencia
-																				
+			
+			CameraPosition camPos = new CameraPosition.Builder().target(valencia) 
+						// Centramos el mapa en el puerto náutico de valencia														
 					.zoom(17) // Establecemos el zoom en 19
 					.bearing(35) // Establecemos la orientación con el noreste
 									// arriba
@@ -182,6 +164,7 @@ public class MapaPuertosActivity extends
 
 			mapa.animateCamera(camUpd3);
 			break;
+			
 		/*case R.id.menu_posicion:
 			CameraPosition camPos2 = mapa.getCameraPosition();
 			LatLng pos = camPos2.target;
@@ -191,7 +174,6 @@ public class MapaPuertosActivity extends
 			break;*/
 
 		case R.id.menu_marcadores:
-			// mostrarMarcador(39.428341, -0.331564);
 			mostrarMarcadores();
 			break;
 		}
@@ -218,17 +200,45 @@ public class MapaPuertosActivity extends
 
 	// Para poder invocar servicios que acceden a Internet desde el hilo
 	// principal de la aplicación
-	// definimos una clase que herede de AsyncTask donde debemo insertar el
+	// definimos una clase que herede de AsyncTask donde debemos insertar el
 	// código a ejecutar.
 	private class RecuperarPuertosTask extends
 			AsyncTask<String, Void, List<ClubNautico>> {
-
+		private ProgressDialog progressDialog;
+		@Override
+		protected void onPreExecute() {
+			
+			progressDialog = ProgressDialog.show(MapaPuertosActivity.this, "Buscando", "Cargando mapas", true);
+		}
+		
 		@Override
 		protected List<ClubNautico> doInBackground(String... arg0) {
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			ClubNauticoDAO clubNauticoDAO = new ClubNauticoDAOHttpClient();
 			List<ClubNautico> clubesNauticos = clubNauticoDAO
 					.recuperarClubesNauticos();
 			return clubesNauticos;
 		}
+		
+		@Override
+		protected void onPostExecute(List<ClubNautico> clubesNauticos) {
+			super.onPostExecute(clubesNauticos);
+			for (ClubNautico clubNautico : clubesNauticos) {
+				LatLng pos = new LatLng(clubNautico.getLatitud(),
+						clubNautico.getLongitud());
+				mapa.addMarker(new MarkerOptions()
+						.title(clubNautico.getNombre())
+						.snippet(clubNautico.getDireccion())
+						.icon(BitmapDescriptorFactory
+								.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+						.position(pos));
+			}	
+			progressDialog.dismiss();
+		}		
 	}
 }

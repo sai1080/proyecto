@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 			}
 		});
         
-        mapasButton.setOnClickListener(new OnClickListener() {			
+        mapasButton.setOnClickListener(new OnClickListener()  {			
 			@Override
 			public void onClick(View arg0) {
 		          Intent intent2 = new Intent(MainActivity.this, MapaPuertosActivity.class);
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.MenuOpc1:
-          Intent intent1 = new Intent(MainActivity.this, ListadoPuertosActivity.class);
+          Intent intent1 = new Intent(MainActivity.this, AcercaDe.class);
           startActivity(intent1);
             return true;
         case R.id.MenuOpc2:
@@ -58,7 +58,6 @@ public class MainActivity extends Activity {
             return true;
         default:
             return super.onOptionsItemSelected(item);
-        }
-    
+        }  
     }
 }

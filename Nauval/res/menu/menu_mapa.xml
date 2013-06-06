@@ -4,8 +4,7 @@
          android:title="Mapa inicial" 
          android:orderInCategory="100">
     </item>
-    
-    
+      
     <item android:id="@+id/menu_vista"
         android:orderInCategory="100"
         android:showAsAction="never"

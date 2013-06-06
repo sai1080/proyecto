@@ -34,7 +34,7 @@ int id direccion_text_view 0x7f040007
 int id emailtextview 0x7f04000b
 int id etiquetacoordenadastextview 0x7f04000e
 int id hybrid 0x7f040004
-int id informacion 0x7f040011
+int id informacion 0x7f040010
 int id listado_button 0x7f040012
 int id map 0x7f040014
 int id mapa_button 0x7f040013
@@ -46,7 +46,7 @@ int id menu_mover 0x7f04001b
 int id menu_vista 0x7f04001a
 int id none 0x7f040000
 int id normal 0x7f040001
-int id positiontextview 0x7f040010
+int id positiontextview 0x7f040011
 int id satellite 0x7f040002
 int id telefonotextview 0x7f040009
 int id terrain 0x7f040003
@@ -55,10 +55,11 @@ int id textView2 0x7f040008
 int id textView4 0x7f04000a
 int id textView5 0x7f04000c
 int id webtextview 0x7f04000d
-int layout activity_detalle_puerto 0x7f030000
-int layout activity_main 0x7f030001
-int layout mapas 0x7f030002
-int layout puertos 0x7f030003
+int layout acercade 0x7f030000
+int layout activity_detalle_puerto 0x7f030001
+int layout activity_main 0x7f030002
+int layout mapas 0x7f030003
+int layout puertos 0x7f030004
 int menu detalle_puerto 0x7f090000
 int menu main 0x7f090001
 int menu menu_mapa 0x7f090002
@@ -88,6 +89,7 @@ int string listadobutton 0x7f050014
 int string mapabutton 0x7f050015
 int string position 0x7f05001b
 int string telefonotextview 0x7f050018
+int string textoAcercaDe 0x7f05001c
 int string title_activity_detalle_puerto 0x7f050016
 int string web_text_view 0x7f05001a
 int style AppBaseTheme 0x7f080000

@@ -9,10 +9,8 @@ public class ClubNautico {
 	private String web;
 	private Double longitud;
 	private Double latitud;
-
 	
-	public ClubNautico(){
-		
+	public ClubNautico(){		
 	}
 	
 	public ClubNautico(Integer id, String nombre, String direccion,
@@ -93,9 +91,7 @@ public class ClubNautico {
 	}
 	
 	@Override
-	public String toString() {
-		String total=nombre + ","+ direccion+ ","+ telefono+"\n";
-		return total;
+	public String toString() {	
+		return nombre;
 	}
-
 }

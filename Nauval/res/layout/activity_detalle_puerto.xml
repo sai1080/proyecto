@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#DCD88B"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#0000FF"
+        android:textSize="20sp"
         android:text="@string/direccion" />
 
     <TextView
@@ -27,6 +29,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:textColor="#0000FF"
         android:text="@string/telefonotextview" />
 
@@ -41,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#0000FF"
+        android:textSize="20sp"
         android:text="@string/email_text_view" />
 
     <TextView
@@ -55,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#0000FF"
+        android:textSize="20sp"
         android:text="@string/web_text_view" />
 
     <TextView
@@ -67,27 +72,35 @@
         android:id="@+id/etiquetacoordenadastextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/position" />
+        android:text="@string/position"
+        android:textSize="20sp"
+        android:textColor="#0000FF" />
     
     <TextView
         android:id="@+id/coordenadastextview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"  />
+
+    <ListView
+        android:id="@+id/informacion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CEF6F5"
+        android:entries="@array/opciones_puerto"
+        android:paddingTop="10dp"
+        android:layout_marginTop="25sp"
+        android:textSize="20sp"
+        android:textColor="#0000FF"
+        tools:listitem="@android:layout/simple_list_item_1" >
+
+    </ListView>
 
     <TextView
         android:id="@+id/positiontextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <ListView
-         android:id="@+id/informacion"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:entries="@array/opciones_puerto"
-         tools:listitem="@android:layout/simple_list_item_1" >
-
-    </ListView>
     
 
 </LinearLayout>

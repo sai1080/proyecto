@@ -7,7 +7,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:id="@+id/Lista">
     </ListView>

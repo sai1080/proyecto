@@ -36,5 +36,4 @@
         android:layout_below="@+id/listado_button"
         android:layout_marginTop="14dp"
         android:text="@string/mapabutton" />
-
 </RelativeLayout>

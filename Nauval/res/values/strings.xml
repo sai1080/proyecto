@@ -7,10 +7,12 @@
     <string name="listadobutton">Listado puertos</string>
     <string name="mapabutton">Mapa</string>
     <string name="title_activity_detalle_puerto">Detalle puerto</string>
-    <string name="direccion">Direccion</string>
+    <string name="direccion">Dirección</string>
     <string name="telefonotextview">Teléfono</string>
     <string name="email_text_view">Correo electrónico</string>
     <string name="web_text_view">Página web</string>
     <string name="position">Coordenadas</string>
+    <string name="textoAcercaDe">Esta es una aplicación desarrollada por Simón Murillo Martínez
+        					con derechos de copyright</string>
 
 </resources>
